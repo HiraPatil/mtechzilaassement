@@ -1,24 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import WithOutNav from './componets/layout/withoutnav';
+import Withnav from './componets/layout/withnav';
+import Home from './componets/home/home';
+import Registger from './componets/auth/registger';
+import About from './componets/about/about';
+import Login from './componets/auth/login';
+import Gituser from './componets/gitUser/gituser';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+   <Router>
+    <Routes>
+      <Route element={<WithOutNav/>}>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Registger/>}></Route>
+      </Route>
+      <Route element={<Withnav/>}>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/git-user' element={<Gituser/>}/>
+      </Route>
+    </Routes>
+   </Router>
+   </>
   );
 }
 
